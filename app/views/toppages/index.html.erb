@@ -1,0 +1,22 @@
+<% if logged_in? %>
+  <div>
+    <aside>
+      <%= form_with(model: @task, local: true) do |f| %>
+        <div>
+          <%= f.text_area :content, rows: 5 %>
+        </div>
+        <%= f.submit 'Post' %>
+      <% end %>
+    </aside>
+    <div>
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+  </div>
+<% else %>
+  <div>
+    <div>
+      <h1>Welcome to the Tasks</h1>
+      <%= link_to 'Sign up now!', signup_path %>
+    </div>
+  </div>
+<% end %>

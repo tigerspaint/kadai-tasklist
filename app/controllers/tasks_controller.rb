@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
-  
+  before_action :require_user_logged_in
+
   def index
     @tasks = Task.all
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -14,6 +15,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(tasks_params)
+    @task.user_id = session[:user_id]
     
     if @task.save
       flash[:success] = 'タスクが正常に登録されました'
@@ -47,7 +49,7 @@ class TasksController < ApplicationController
   private
   
   def tasks_params
-    params.require(:task).permit(:content, :status)
+    params.require(:task).permit(:content, :status, :name, :email, :password, :password_confirmation)
   end
 
   def set_task
