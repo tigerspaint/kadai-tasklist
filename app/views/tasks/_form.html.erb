@@ -9,11 +9,15 @@
     </div>
   <% end %>
   
-  <%= f.label :status, 'ステータス' %>
-  <%= f.text_field :status %>
-  
-  <%= f.label :content, 'タスク' %>
-  <%= f.text_field :content %>
+  <div>
+    <%= f.label :status, 'ステータス' %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div>
+    <%= f.label :content, 'タスク' %>
+    <%= f.text_field :content %>
+  </div>
 
   <%= f.submit '投稿' %>
 <% end %>

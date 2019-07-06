@@ -1,8 +1,15 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
+  # correct_userをshow, edit, update, destroyに適用する。
+  # - correct_userを定義する
+  # - before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit , :update, :destroy]
 
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
+    # @tasks = Task.where(user_id: current_user.id)
+    # 現在ログインしているUserが所有しているtaskのみ取得
+    @tasks = current_user.tasks
   end
 
   def show
@@ -43,7 +50,7 @@ class TasksController < ApplicationController
     @task.destroy
     
     flash[:success] = 'タスクは削除されました'
-    redirect_to tasks_url
+    redirect_back(fallback_location: root_path)
   end
   
   private
@@ -54,5 +61,13 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+  
+  def correct_user
+    #...
+    @task = current_user.tasks.find_by(id: params[:id])
+    unless @task
+      redirect_to root_url
+    end
   end
 end
