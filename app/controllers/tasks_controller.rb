@@ -59,10 +59,6 @@ class TasksController < ApplicationController
     params.require(:task).permit(:content, :status, :name, :email, :password, :password_confirmation)
   end
 
-  def set_task
-    @task = Task.find(params[:id])
-  end
-  
   def correct_user
     #...
     @task = current_user.tasks.find_by(id: params[:id])

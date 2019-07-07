@@ -14,7 +14,6 @@
             <a href="#" data-toggle="dropdown"><%= current_user.name %></a>
             <ul>
               <li><%= link_to 'My profile', user_path(current_user) %></li>
-              <li></li>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
           </li>
