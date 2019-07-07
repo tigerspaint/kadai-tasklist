@@ -56,7 +56,7 @@ class TasksController < ApplicationController
   private
   
   def tasks_params
-    params.require(:task).permit(:content, :status, :name, :email, :password, :password_confirmation)
+    params.require(:task).permit(:content, :status)
   end
 
   def correct_user
