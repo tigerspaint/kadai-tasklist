@@ -6,9 +6,9 @@
       <ul></ul>
       <ul>
         <% if logged_in? %>
-          <li><%= link_to 'Users', users_path %></li>
+          <!--li><%= link_to 'Users', users_path %></li-->
           <li>
-            <a href="#" data-toggle="dropdown"><%= current_user.name %></a>
+            <%= current_user.name %><!--a href="#" data-toggle="dropdown"></a-->
             <ul>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
